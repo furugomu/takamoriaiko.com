@@ -4,7 +4,7 @@ aiko =
   text: ""
 
   updateLocation: ->
-    history.replaceState(null, null, "?"+punycode.encode(@text))
+    history.pushState(null, null, "?"+@toQuery(@text))
 
   updateShareButton: ->
     url = "https://twitter.com/share?"+ $.param
@@ -44,9 +44,9 @@ aiko =
     $("#aiko").css("visibility", "visible")
     text = @parseQuery(location.search.substring(1))
     if text.length > 0
-      @talk(text)
-    else
-      @animate()
+      @setText(text)
+      @updateShareButton()
+    @animate()
 
   parseQuery: (qs)->
     urldecoded = decodeURIComponent(qs)
@@ -54,6 +54,10 @@ aiko =
       punycode.decode(urldecoded)
     catch e
       urldecoded
+
+  toQuery: (text)->
+    text = text.replace(/\s+/g, ' ')
+    encodeURIComponent(punycode.encode(text))
 
 exports?.aiko = aiko
 window?.aiko = aiko
