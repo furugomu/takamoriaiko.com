@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ viewBox="0 0 180 180" width="24" height="24">
+ <path d="M 42 2 l 86 86 v -70 h 49 v 115 c 0 27 -5 32 -32 32 h -120 v -49 h 65 l -83 -83 z" fill="#454545" />
+</svg>

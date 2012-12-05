@@ -1,0 +1,86 @@
+body {
+  background: #eef5d3;
+  color: #a4c520;
+}
+
+* {
+  margin: 0; padding: 0;
+}
+#aiko {
+  background: white;
+  color: black;
+  position: relative;
+  width: 480px;
+  height: 640px;
+  margin: auto;
+  overflow: hidden;
+  visibility: hidden;
+}
+.face {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#serifu {
+  width: 480px;
+  height: 192px;
+  position: absolute;
+  top: 448px;
+}
+#serifu * { position: absolute; }
+#frame {
+  top: 0;
+  left: 2px;
+}
+#name {
+  top: 2px;
+  left: 40px;
+  font-size: 36px;
+  font-weight: bold;
+}
+#text {
+  left: 8px;
+  top: 54px;
+  right: 8px;
+  font-size: 24px;
+}
+#arrow {
+  right: 16px;
+  bottom: 16px;
+}
+
+#form {
+  margin: 5%;
+  width: auto;
+  text-align: center;
+}
+#input {
+  width: 100%;
+  border: 1px solid #a4c520;
+  border-radius: 10px;
+  font-size: 2em;
+  background: white;
+  color: black;
+}
+#button {
+  width: 100%;
+  max-width: 480px;
+  border: solid #a4c520;
+  border-width: 1px 1px 2px;
+  background: #eef5d3;
+  border-radius: 10px;
+  color: #a4c520;
+  font-weight: bold;
+  font-size: 2em;
+}
+#button:active {
+  border-bottom-width: 1px;
+  margin-top: 1px;
+}
+#share {
+  margin: 5%;
+}
+#share a {
+  font-size: 2em;
+  color: #a4c520;
+}
