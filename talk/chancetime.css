@@ -33,16 +33,18 @@ body {
   left: 2px;
 }
 #name {
-  top: 2px;
+  top: 10px;
   left: 40px;
   font-size: 36px;
   font-weight: bold;
+  line-height: 100%;
 }
 #text {
-  left: 8px;
+  left: 12px;
   top: 54px;
-  right: 8px;
-  font-size: 24px;
+  right: 38px;
+  font-size: 30px;
+  line-height: 100%;
 }
 #arrow {
   right: 16px;
