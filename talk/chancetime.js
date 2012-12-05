@@ -108,6 +108,8 @@
     return $("#twitter").prop("href", url);
   };
 
+  updateShareURL();
+
   $("#form").submit(function() {
     var text;
     text = $("#input").val();

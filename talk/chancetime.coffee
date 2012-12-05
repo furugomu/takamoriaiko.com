@@ -68,6 +68,7 @@ updateShareURL = ->
     url: location.href
     text: document.title
   $("#twitter").prop("href", url)
+updateShareURL()
 
 # 入力した
 $("#form").submit ->
