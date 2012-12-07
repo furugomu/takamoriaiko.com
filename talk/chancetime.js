@@ -6,7 +6,7 @@
   aiko = {
     text: "",
     updateLocation: function() {
-      return history.replaceState(null, null, "?" + encodeURIComponent(this.text));
+      return history.replaceState(null, null, "?" + punycode.encode(this.text));
     },
     updateShareButton: function() {
       var url;
@@ -63,7 +63,15 @@
       }
     },
     parseQuery: function(qs) {
-      return decodeURIComponent(qs);
+      if (qs.indexOf("%") >= 0) {
+        return decodeURIComponent(qs);
+      } else {
+        try {
+          return punycode.decode(qs);
+        } catch (e) {
+          return "";
+        }
+      }
     }
   };
 
