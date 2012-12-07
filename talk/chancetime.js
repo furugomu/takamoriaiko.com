@@ -63,14 +63,12 @@
       }
     },
     parseQuery: function(qs) {
-      if (qs.indexOf("%") >= 0) {
-        return decodeURIComponent(qs);
-      } else {
-        try {
-          return punycode.decode(qs);
-        } catch (e) {
-          return "";
-        }
+      var urldecoded;
+      urldecoded = decodeURIComponent(qs);
+      try {
+        return punycode.decode(urldecoded);
+      } catch (e) {
+        return urldecoded;
       }
     }
   };

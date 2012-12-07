@@ -49,13 +49,11 @@ aiko =
       @animate()
 
   parseQuery: (qs)->
-    if qs.indexOf("%") >= 0
-      decodeURIComponent(qs)
-    else
-      try
-        punycode.decode(qs)
-      catch e
-        ""
+    urldecoded = decodeURIComponent(qs)
+    try
+      punycode.decode(urldecoded)
+    catch e
+      urldecoded
 
 exports?.aiko = aiko
 window?.aiko = aiko
