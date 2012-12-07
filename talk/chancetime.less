@@ -1,11 +1,15 @@
+@bgcolor: #eef5d3;
+@maincolor: #a4c520;
+
 body {
-  background: #eef5d3;
-  color: #a4c520;
+  background: @bgcolor;
+  color: @maincolor;
 }
+
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
 }
+
 #aiko {
   background: white;
   color: black;
@@ -27,9 +31,7 @@ body {
   position: absolute;
   top: 448px;
 }
-#serifu * {
-  position: absolute;
-}
+#serifu * { position: absolute; }
 #frame {
   top: 0;
   left: 2px;
@@ -52,6 +54,7 @@ body {
   right: 16px;
   bottom: 16px;
 }
+
 #form {
   margin: 5%;
   width: auto;
@@ -59,7 +62,7 @@ body {
 }
 #input {
   width: 100%;
-  border: 1px solid #a4c520;
+  border: 1px solid @maincolor;
   border-radius: 10px;
   font-size: 2em;
   background: white;
@@ -68,11 +71,11 @@ body {
 #button {
   width: 100%;
   max-width: 480px;
-  border: solid #a4c520;
+  border: solid @maincolor;
   border-width: 1px 1px 2px;
-  background: #eef5d3;
+  background: @bgcolor;
   border-radius: 10px;
-  color: #a4c520;
+  color: @maincolor;
   font-weight: bold;
   font-size: 2em;
 }
@@ -85,7 +88,7 @@ body {
 }
 #share a {
   font-size: 2em;
-  color: #a4c520;
+  color: @maincolor;
 }
 #twitter {
   display: none;
