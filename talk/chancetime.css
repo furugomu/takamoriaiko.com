@@ -47,6 +47,7 @@ body {
   right: 38px;
   font-size: 30px;
   line-height: 100%;
+  white-space: pre-wrap;
 }
 #arrow {
   right: 16px;

@@ -56,7 +56,6 @@ aiko =
       urldecoded
 
   toQuery: (text)->
-    text = text.replace(/\s+/g, ' ')
     encodeURIComponent(punycode.encode(text))
 
 exports?.aiko = aiko

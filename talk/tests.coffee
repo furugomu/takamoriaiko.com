@@ -21,7 +21,7 @@ test "toQuery URL エンコードする", ->
   equal aiko.toQuery("&> "),
         encodeURIComponent(punycode.encode("&> "))
 
-test "toQuery 連続する空白文字は空白に", ->
+test "toQuery 空白文字はそのまま", ->
   equal aiko.toQuery("ポ\nポ\t \nポ"),
-        encodeURIComponent(punycode.encode("ポ ポ ポ"))
+        encodeURIComponent(punycode.encode("ポ\nポ\t \nポ"))
 
