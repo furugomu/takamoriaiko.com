@@ -1,0 +1,40 @@
+<!DOCTYPE html><!--*- encoding: UTF-8 -*-->
+<html>
+ <head>
+  <meta charset=UTF-8>
+  <title>おしゃべり藍子+</title>
+  <meta name="viewport" content="width=480">
+  <link rel=stylesheet href="../talk/chancetime.css">
+  <link rel=canonical href="http://takamoriaiko.com/talk+/">
+  <script src="../talk/jquery-1.8.3.min.js"></script>
+  <script src="../talk/punycode.min.js"></script>
+ </head>
+ <body>
+  <div id=aiko>
+   <img src="0.jpg" alt="" class="face" id=face0>
+   <img src="1.jpg" alt="" class="face" id=face1>
+   <img src="2.jpg" alt="" class="face" id=face2>
+   <img src="3.jpg" alt="" class="face" id=face3>
+   <div id="serifu">
+    <img src="../talk/frame.png" alt="" id="frame">
+    <span id="name">藍子</span>
+    <p id="text">プロデューサーさん、ちょっといいですか？ ふふっ…私、もっと色んなお話したいです。…いいですか？</p>
+    <img src="../talk/arrow.svg" alt="" id="arrow">
+   </div>
+  </div>
+
+  <div id="create-your-own">
+   <form id="form">
+    <p>
+     <textarea cols=80 rows=2 maxlength=80 id=input></textarea>
+     <button id=button>しゃべらせる</button>
+    </p>
+   </form>
+   <p id="share">
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+    <a id=twitter href="https://twitter.com/share" target="_blank">このセリフを Twitter に</a>
+   </p>
+   <script src="../talk/chancetime.js"></script>
+   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ </body>
+</html>
