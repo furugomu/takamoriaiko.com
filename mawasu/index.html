@@ -2,8 +2,8 @@
 <html>
  <head>
   <meta charset=UTF-8>
-  <title>mawasu</title>
-  <meta name="viewport" content="width=device-width">
+  <title>藍子の一部を回す</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
   <script src="mawasu.js"></script>
   <style>
@@ -16,6 +16,7 @@ p {
 }
 img[data-url] {
   cursor: pointer;
+  width: 50px;
 }
   </style>
  </head>
@@ -47,20 +48,18 @@ img[data-url] {
    <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/0321c8e5bf54a3c4602ee87bac727750.jpg"
     data-url="http://125.6.169.35/idolmaster/image_sp/card/l/0321c8e5bf54a3c4602ee87bac727750.jpg">
   </p>
+  <p>
+   <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </p>
   <script>
 var canvas = document.querySelector('canvas');
-var ratio = window.devicePixelRatio
-if (ratio && ratio !== 1) {
-  canvas.width /= ratio;
-  canvas.height /= ratio;
-  ctx.scale(ratio, ratio);
-}
 var mawasu = new Mawasu(canvas);
-//mawasu.setImageURL('https://www.google.co.jp/images/nav_logo123.png');
+window.m = mawasu;
 mawasu.setImageURL('http://125.6.169.35/idolmaster/image_sp/card/l/25ea7fdd66fc6bd8e7209a4c0d2ba00c.jpg');
-mawasu.cx = 300;
-mawasu.cy = 242;
-mawasu.radius = 80;
+mawasu.cx = 303;
+mawasu.cy = 178;
+mawasu.radius = 146;
 $(document).on('click', 'img[data-url]', function() {
   mawasu.setImageURL($(this).data('url'));
 });

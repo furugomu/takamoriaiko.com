@@ -11,13 +11,21 @@ Mawasu.prototype = {
     this.cy = 60;
     this.radius = 30;
     this.angle = 0;
+    this.speed = 0.05;
     this.image = null;
     this.setListeners();
+
+    // retina display
+    var ratio = window.devicePixelRatio || 1;
+    if (ratio !== 1) {
+      this.canvas.style.width = (this.canvas.width/ratio)+'px';
+      this.canvas.style.height = (this.canvas.height/ratio)+'px';
+    }
 
     this.start();
   },
   update: function() {
-    this.angle += Math.PI * 0.05;
+    this.angle += Math.PI * this.speed;
     if (this.angle > Math.PI*2) this.angle -= Math.PI*2;
     this.draw();
   },
@@ -69,50 +77,75 @@ Mawasu.prototype = {
   },
 
   setListeners: function() {
+    if (typeof(window.ontouchstart) !== 'undefined') {
+      this.setTouchEventListeners();
+    }
+    else {
+      this.setMouseEventListeners();
+    }
+  },
+  setMouseEventListeners: function() {
     var self = this;
     var ondrag = this.ondrag.bind(this);
     var moveEvents = ['mousemove', 'touchmove', 'MSPointerMove'];
 
-    ['mousedown', 'touchstart', 'MSPointerDown'].forEach(function(start) {
-      self.canvas.addEventListener(start, self.ondragstart.bind(self), false);
+    this.canvas.addEventListener('mousedown', this.ondragstart.bind(this), false);
+    this.canvas.addEventListener('mousedown', function() {
+      self.canvas.addEventListener('mousemove', ondrag, false);
+    }, false);
 
-      self.canvas.addEventListener(start, function() {
-        moveEvents.forEach(function(move) {
-          self.canvas.addEventListener(move, ondrag, false);
-        });
-      }, false);
+    this.canvas.addEventListener('mouseup', this.ondragend.bind(this), false);
+    this.canvas.addEventListener('mouseup', function() {
+      self.canvas.removeEventListener('mousemove', ondrag, false);
+    }, false);
+  },
 
-    });
-
-    ['mouseup', 'touchend', 'MSPointerUp', 'MSPointerCancel'].forEach(function(end) {
-      self.canvas.addEventListener(end, self.ondragend.bind(self), false);
-
-      self.canvas.addEventListener(end, function() {
-        moveEvents.forEach(function(move) {
-          self.canvas.removeEventListener(move, ondrag, false);
-        });
-      }, false);
-    });
+  mouseX: function(e) {
+    return (e.offsetX || this.touchX(e)) * (window.devicePixelRatio || 1);
+  },
+  mouseY: function(e) {
+    return (e.offsetY || this.touchY(e)) * (window.devicePixelRatio || 1);
+  },
+  touchX: function(e) {
+    return e.touches[0].pageX - this.canvasPosition().left;
+  },
+  touchY: function(e) {
+    return e.touches[0].pageY - this.canvasPosition().top;
   },
 
   ondragstart: function(e) {
     e.preventDefault();
-    this.dragStartPosition = [e.clientX, e.clientY];
+    this.dragStartPosition = [this.mouseX(e), this.mouseY(e)];
     // つついた場所を中心にする
-    var p = this.canvasPosition();
-    this.cx = e.clientX - p.left;
-    this.cy = e.clientY - p.top;
+    this.cx = this.mouseX(e);
+    this.cy = this.mouseY(e);
   },
   ondrag: function(e) {
     // 回す範囲をひろげる
     if (!this.dragStartPosition) return;
-    var width = Math.abs(this.dragStartPosition[0] - e.clientX);
-    var height = Math.abs(this.dragStartPosition[1] - e.clientY);
-    var radius = width > height ? width : height;
+    var width = Math.abs(this.dragStartPosition[0] - this.mouseX(e));
+    var height = Math.abs(this.dragStartPosition[1] - this.mouseY(e));
+    var radius = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2))
     if (radius < 4) return;
     this.radius = radius;
   },
   ondragend: function(e) {
     this.dragStartPosition = null;
-  }
+  },
+
+  setTouchEventListeners: function() {
+    var self = this;
+    this.canvas.addEventListener('touchstart', this.ontouchstart.bind(this), false);
+    this.canvas.addEventListener('gesturechange', this.ongesturechange.bind(this), false);
+  },
+  ontouchstart: function(e) {
+    if (e.touches.length !== 1) return;
+    // つついた場所を中心にする
+    this.cx = this.mouseX(e);
+    this.cy = this.mouseY(e);
+  },
+  ongesturechange: function(e) {
+    e.preventDefault();
+    this.radius = e.scale * 100;
+  },
 }
