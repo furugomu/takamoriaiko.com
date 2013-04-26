@@ -1,0 +1,69 @@
+<!DOCTYPE html><!--*- encoding: UTF-8 -*-->
+<html>
+ <head>
+  <meta charset=UTF-8>
+  <title>mawasu</title>
+  <meta name="viewport" content="width=device-width">
+  <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+  <script src="mawasu.js"></script>
+  <style>
+body {
+  margin: 0;
+  padding: 0;
+}
+p {
+  margin: 1em 0;
+}
+img[data-url] {
+  cursor: pointer;
+}
+  </style>
+ </head>
+ <body>
+  <!--[if lt IE 9]>
+   <p>このブラウザでは動きません。</p>
+  <![endif]-->
+  <canvas width=640 height=800></canvas>
+  <p>遊び方: クリックやドラッグしてみよう。</p>
+  <p>
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/25ea7fdd66fc6bd8e7209a4c0d2ba00c.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/25ea7fdd66fc6bd8e7209a4c0d2ba00c.jpg">
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/57bfd18f73cf672d05643716f74bbc48.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/57bfd18f73cf672d05643716f74bbc48.jpg">
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/8406433757bac86ef8134cd59ed4cd3b.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/8406433757bac86ef8134cd59ed4cd3b.jpg">
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/55f34023e9d773f97afde9bb99574843.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/55f34023e9d773f97afde9bb99574843.jpg">
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/f70f143d7bb856a67cb7bbd175dc7829.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/f70f143d7bb856a67cb7bbd175dc7829.jpg">
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/d6dbb1e8e2c5e452026e993c5a8fde56.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/d6dbb1e8e2c5e452026e993c5a8fde56.jpg">
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/a14b13704b20edf9834c27832fd1670f.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/a14b13704b20edf9834c27832fd1670f.jpg">
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/d0289c681ff7668957a4d7a4198b61aa.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/d0289c681ff7668957a4d7a4198b61aa.jpg">
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/6efffe43696b87d64380769c40a3f12d.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/6efffe43696b87d64380769c40a3f12d.jpg">
+   <img src="http://125.6.169.35/idolmaster/image_sp/card/xs/0321c8e5bf54a3c4602ee87bac727750.jpg"
+    data-url="http://125.6.169.35/idolmaster/image_sp/card/l/0321c8e5bf54a3c4602ee87bac727750.jpg">
+  </p>
+  <script>
+var canvas = document.querySelector('canvas');
+var ratio = window.devicePixelRatio
+if (ratio && ratio !== 1) {
+  canvas.width /= ratio;
+  canvas.height /= ratio;
+  ctx.scale(ratio, ratio);
+}
+var mawasu = new Mawasu(canvas);
+//mawasu.setImageURL('https://www.google.co.jp/images/nav_logo123.png');
+mawasu.setImageURL('http://125.6.169.35/idolmaster/image_sp/card/l/25ea7fdd66fc6bd8e7209a4c0d2ba00c.jpg');
+mawasu.cx = 300;
+mawasu.cy = 242;
+mawasu.radius = 80;
+$(document).on('click', 'img[data-url]', function() {
+  mawasu.setImageURL($(this).data('url'));
+});
+  </script>
+ </body>
+</html>
