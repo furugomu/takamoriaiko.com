@@ -55,17 +55,19 @@ img[data-url] {
   <script>
 var canvas = document.querySelector('canvas');
 var mawasu = new Mawasu(canvas);
-window.m = mawasu;
-mawasu.setImageURL('http://125.6.169.35/idolmaster/image_sp/card/l/25ea7fdd66fc6bd8e7209a4c0d2ba00c.jpg');
-mawasu.cx = 303;
-mawasu.cy = 178;
-mawasu.radius = 146;
 
 if (location.hash.length > 0) {
   mawasu.restore(location.hash.substring(1));
 }
+else {
+  mawasu.setImageURL('http://125.6.169.35/idolmaster/image_sp/card/l/'+
+                     '25ea7fdd66fc6bd8e7209a4c0d2ba00c.jpg');
+  mawasu.cx = 303;
+  mawasu.cy = 178;
+  mawasu.radius = 146;
+}
+
 $(canvas).on('mouseup touchend', function() {
-  console.log(68);
   location.hash = '#'+mawasu.dump();
 });
 
