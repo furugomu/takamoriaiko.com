@@ -54,7 +54,7 @@ Mawasu.prototype = {
     image.addEventListener('load', function() {
       self.image = image;
     }, false);
-    image.src = url;
+    this.imageURL = image.src = url;
   },
   start: function() {
     var requestAnimationFrame =
@@ -147,5 +147,22 @@ Mawasu.prototype = {
   ongesturechange: function(e) {
     e.preventDefault();
     this.radius = e.scale * 100;
+  },
+
+  dump: function() {
+    return 'x='+this.cx+'&y='+this.cy+'&r='+(this.radius|0)+
+      '&u='+encodeURIComponent(this.imageURL);
+  },
+  restore: function(str) {
+    var map = {};
+    var pairs = str.split(/&/);
+    for (var i in pairs) {
+      var pair = pairs[i].split(/=/);
+      map[pair[0]] = decodeURIComponent(pair[1]);
+    }
+    if (map.x) this.cx = map.x;
+    if (map.y) this.cy = map.y;
+    if (map.r) this.radius = map.r;
+    if (map.u) this.setImageURL(map.u);
   },
 }

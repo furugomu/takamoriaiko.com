@@ -60,6 +60,15 @@ mawasu.setImageURL('http://125.6.169.35/idolmaster/image_sp/card/l/25ea7fdd66fc6
 mawasu.cx = 303;
 mawasu.cy = 178;
 mawasu.radius = 146;
+
+if (location.hash.length > 0) {
+  mawasu.restore(location.hash.substring(1));
+}
+$(canvas).on('mouseup touchend', function() {
+  console.log(68);
+  location.hash = '#'+mawasu.dump();
+});
+
 $(document).on('click', 'img[data-url]', function() {
   mawasu.setImageURL($(this).data('url'));
 });
