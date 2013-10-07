@@ -22,7 +22,7 @@ var allVoicePaths = {
     '3409001/6b171e64dbce3a8ea3d5616601e58792.mp4',
     '3409001/af6b78f548d07c8b66609dbcc6770e45.mp4',
     '3409001/7d206fe24443a1642ea742afcbe6dc29.mp4',
-    '3409001/7d206fe24443a1642ea742afcbe6dc29.mp4',
+    //'3409001/.mp4',
     '3409001/6875e698d53862064d7675f67bc8e1b6.mp4',
     '3409001/7d79e95572364ad32ad82a4f3fe2d563.mp4',
     '3409001/13c83d532da97aa6c5e41a5e19b26aa0.mp4',
@@ -63,6 +63,7 @@ var Player = {
     a.autoplay = true;
     a.src = url;
     a.volume = this.initialVolume;
+    a.play();
     this.audios.push(a);
 
     var player = this;
@@ -88,14 +89,18 @@ var Player = {
     }
   },
   start: function() {
-    if (this.intervalId) return;
+    this.next();
+  },
+  next: function() {
+    if (this.timeoutId) return;
     this.playRandom();
+    var interval = 4000 / this.maxPlayings;
     var player = this;
-    this.intervalId = setInterval(function() { player.playRandom() }, 1000);
+    this.timeoutId = setTimeout(function() { player.next() }, interval);
   },
   stop: function() {
-    clearInterval(this.intervalId);
-    this.intervalId = null;
+    clearTimeout(this.timeoutId);
+    this.timeoutId = null;
     for (var i = 0; i < this.audios.length; ++i) {
       this.audios[i].pause();
       delete this.audios[i];
