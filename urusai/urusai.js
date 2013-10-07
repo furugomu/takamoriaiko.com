@@ -57,30 +57,6 @@ var Player = {
   maxPlayings: 3,
   audios: [],
 
-  play: function(url) {
-    if (this.audios.length >= this.maxPlayings) return;
-    var a = new Audio();
-    a.autoplay = true;
-    a.src = url;
-    a.volume = this.initialVolume;
-    a.play();
-    this.audios.push(a);
-
-    var player = this;
-    a.addEventListener('ended', function() {
-      for (var i = 0; i < player.audios.length; ++i) {
-        if (player.audios[i] !== a) continue;
-        player.audios.splice(i, 1);
-      }
-      delete a;
-    });
-  },
-  playRandom: function() {
-    var choice = function(xs) { return xs[Math.floor(Math.random()*xs.length)] };
-    var url = baseUrl + choice(this.voicePaths);
-    if (!url) return;
-    this.play(url);
-  },
   changeVolume: function(volume) {
     if (volume > 1) volume = 1;
     this.initialVolume = volume;
@@ -89,21 +65,46 @@ var Player = {
     }
   },
   start: function() {
-    this.next();
-  },
-  next: function() {
-    if (this.timeoutId) return;
-    this.playRandom();
-    var interval = 4000 / this.maxPlayings;
+    this.stop();
     var player = this;
-    this.timeoutId = setTimeout(function() { player.next() }, interval);
+    for (var i = 0; i < this.maxPlayings; ++i) {
+      var audio = this.addAudio();
+      // 1000msずつずらして再生
+      (function(a, t) {
+        setTimeout(function() {a.play()}, t);
+      })(audio, i*1000);
+    }
   },
   stop: function() {
-    clearTimeout(this.timeoutId);
-    this.timeoutId = null;
     for (var i = 0; i < this.audios.length; ++i) {
       this.audios[i].pause();
       delete this.audios[i];
+    }
+    this.audios = [];
+  },
+  addAudio: function() {
+    var choice = function(xs) { return xs[Math.floor(Math.random()*xs.length)] };
+    var player = this;
+    var a = new Audio();
+    this.audios.push(a);
+    a.src = baseUrl + choice(this.voicePaths);
+    // 終わったら別のをランダムに再生する
+    a.addEventListener('ended', function(e) {
+      e.target.src = baseUrl + choice(player.voicePaths);
+      e.target.play();
+    }, false);
+    return a;
+  },
+  setMaxPlayings: function(n) {
+    var diff = n - this.maxPlayings;
+    this.maxPlayings = n;
+    // 減り
+    for (var i = 0; i > diff; --i) {
+      this.audios.pop().pause();
+    }
+    // 増え
+    for (var i = 0; i < diff; ++i) {
+      this.addAudio().play();
     }
   },
   setVoiceGroups: function(groups) {
@@ -111,7 +112,6 @@ var Player = {
     for (var i = 0; i < groups.length; ++i) {
       this.voicePaths = this.voicePaths.concat(allVoicePaths[groups[i]]);
     }
-    console.log(this.voicePaths);
   }
 }
 Player.setVoiceGroups(['9900014']);
@@ -120,7 +120,7 @@ document.getElementById('volume').addEventListener('change', function(e) {
   Player.changeVolume(e.target.value);
 });
 document.getElementById('noisiness').addEventListener('change', function(e) {
-  Player.maxPlayings = e.target.value;
+  Player.setMaxPlayings(e.target.value);
 });
 document.getElementById('start').addEventListener('click', function() {
   Player.start();
