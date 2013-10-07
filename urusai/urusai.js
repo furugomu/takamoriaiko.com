@@ -66,7 +66,6 @@ var Player = {
   },
   start: function() {
     this.stop();
-    var player = this;
     for (var i = 0; i < this.maxPlayings; ++i) {
       var audio = this.addAudio();
       // 1000msずつずらして再生
