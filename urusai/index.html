@@ -1,0 +1,60 @@
+<!DOCTYPE html><!--*- encoding: UTF-8 -*-->
+<html>
+ <head>
+  <meta charset=UTF-8>
+  <title>藍子がうるさい</title>
+  <meta name="viewport" content="width=device-width">
+  <style>
+h1, .controls {
+text-align: center;
+}
+h1, button {
+font-size: 4em;
+}
+ul { list-style: none; margin: 0; padding: 0; }
+fieldset { width: 300px; margin: auto; }
+  </style>
+ </head>
+ <body>
+  <h1>藍子がうるさい</h1>
+  <section class=controls>
+   <p>
+    <button id=start>開始</button>
+    <button id=stop>終了</button>
+   </p>
+   <p>
+    <label>音量
+     <input id=volume type=range min=0.0 max=1.0 step=0.05 value=0.7>
+    </label>
+    <label>同時再生数
+     <input id=noisiness type=number min=1 max=10 step=1 value=3>
+    </label>
+   </p>
+  </section>
+  <fieldset><legend>声の種類</legend>
+   <ul>
+    <li><label><input type=checkbox name=group value=9900014 checked>
+     思い出エピソード前編
+    </label></li>
+    <li><label><input type=checkbox name=group value=9900015>
+     思い出エピソード後編
+    </label></li>
+    <li><label><input type=checkbox name=group value=3409001>
+     深緑の魔女 (特訓前)
+    </label></li>
+    <li><label><input type=checkbox name=group value=3509002>
+     深緑の魔女+ (特訓後)
+    </label></li>
+   </ul>
+  </fieldset>
+  <script src="urusai.js"></script>
+  <footer>
+   <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">Tweet</a>
+   <address>
+    <a href="https://twitter.com/furugomu">@furugomu</a>
+    <a href="http://takamoriaiko.com/">TakamoriAiko.com</a>
+   </address>
+  </p>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ </body>
+</html>
