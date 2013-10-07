@@ -117,16 +117,16 @@ Player.setVoiceGroups(['9900014']);
 
 document.getElementById('volume').addEventListener('change', function(e) {
   Player.changeVolume(e.target.value);
-});
+}, false);
 document.getElementById('noisiness').addEventListener('change', function(e) {
   Player.setMaxPlayings(e.target.value);
-});
+}, false);
 document.getElementById('start').addEventListener('click', function() {
   Player.start();
-});
+}, false);
 document.getElementById('stop').addEventListener('click', function() {
   Player.stop();
-});
+}, false);
 
 document.addEventListener('click', function(e) {
   if (e.target.name !== 'group') return;
@@ -135,4 +135,4 @@ document.addEventListener('click', function(e) {
     .filter(function(x) {return x.checked})
     .map(function(x) {return x.value});
   Player.setVoiceGroups(groups);
-});
+}, false);
