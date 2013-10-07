@@ -56,6 +56,7 @@ var Player = {
   initialVolume: 0.7,
   maxPlayings: 3,
   audios: [],
+  started: false,
 
   changeVolume: function(volume) {
     if (volume > 1) volume = 1;
@@ -66,6 +67,7 @@ var Player = {
   },
   start: function() {
     this.stop();
+    this.started = true;
     for (var i = 0; i < this.maxPlayings; ++i) {
       var audio = this.addAudio();
       // 1000msずつずらして再生
@@ -75,6 +77,7 @@ var Player = {
     }
   },
   stop: function() {
+    this.started = false;
     for (var i = 0; i < this.audios.length; ++i) {
       this.audios[i].pause();
       delete this.audios[i];
@@ -103,7 +106,8 @@ var Player = {
     }
     // 増え
     for (var i = 0; i < diff; ++i) {
-      this.addAudio().play();
+      var audio = this.addAudio();
+      if (this.started) audio.play();
     }
   },
   setVoiceGroups: function(groups) {
