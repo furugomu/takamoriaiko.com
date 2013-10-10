@@ -18,6 +18,70 @@ var allVoicePaths = {
     '9900015/7cf074bfc448a990a69518e1ccecb43e.mp4',
     '9900015/5aefd5317ab475fde52ece63e2397428.mp4',
   ],
+  '3000201': [
+    '3000201/5f46c26436eed7cbf6bb6b52be22b520.mp4',
+    '3000201/648ac8833870e6f5dbfaf7167b1d58a6.mp4',
+    '3000201/25d046c4ee2c8c08f163aa073542b855.mp4',
+    '3000201/19149c0be65b563d0b7ada48905aa2fd.mp4',
+    '3000201/f5cb4dfe5f7b71922316ce00b55df1b7.mp4',
+    '3000201/92b70ec4a6b143c7157471ec2f97a9db.mp4',
+    '3000201/d2544deb1a04b52b1af862cc179fb22e.mp4',
+    '3000201/5efe07503c7d1beee5e97906dfd21791.mp4',
+    '3000201/249b474aad7a3f4030015ea4f25528c8.mp4',
+    '3000201/aa5ba170aaae6c2479b19ca2dd7b3003.mp4',
+    '3000201/668adc79504c08dd55963c76ec2358e6.mp4',
+    '3000201/eab28de015599db879399b2db63537f3.mp4',
+    '3000201/f7308cf637ae10c6df88f8f56d330994.mp4',
+    '3000201/4f28acc59292fdd155ccb69951e22d4f.mp4',
+  ],
+  '3100202': [
+    '3100202/12ff301ee4f02f3fa511f58c9e94418f.mp4',
+    '3100202/5b2c45808179e953ccd1ba56d6e1b654.mp4',
+    '3100202/643a889aab6a52091bb5f02fc78c0635.mp4',
+    '3100202/12cc50315b8ad10cc20b6d890c793d63.mp4',
+    '3100202/9e4aab744db602dd6f790e9afdbbe8cd.mp4',
+    '3100202/987058d1ddf19dc18b7a3e89233b51fe.mp4',
+    '3100202/ffdcff590d5bd1a62a74ef1e84ae002c.mp4',
+    '3100202/ccd15fabbeb21e3fed4ab13f1f77aadc.mp4',
+    '3100202/00c0f3e6723c7a4fe1e3baf303735be8.mp4',
+    '3100202/af15979ab896be3120cbb50358fc5388.mp4',
+    '3100202/0996a08b07e2caf9c4dfca2820ce528c.mp4',
+    '3100202/00b33828c9bb13c5de56029f3eaca969.mp4',
+    '3100202/0ce62921823212dd1f0c1b1eb014f8ad.mp4',
+    '3100202/e30a2b83f594512c9a9c570c20c16c85.mp4',
+  ],
+  '3405201': [
+    '3405201/eab9fec86a714b62312b6dd3372372dd.mp4',
+    '3405201/24f07780fb4c13fe80dbab7de4b27639.mp4',
+    '3405201/08b58b3551cdd9cb1a5b50c66d3cf9ec.mp4',
+    '3405201/33d56d49b97c834d398a8ae3cad1e0d2.mp4',
+    '3405201/de849385d4c6fe7ffb45f25a919120d1.mp4',
+    '3405201/157154f46dda94b670049c894aa7e611.mp4',
+    '3405201/010c9232df45c7d0ddd4aa3913656053.mp4',
+    '3405201/1b3e77a8d2618b8f62d1a00a44b84303.mp4',
+    '3405201/d2d8756a1b5a49ede6a34f481a7b227a.mp4',
+    '3405201/8323132189b5a625f4b24559b974fb3c.mp4',
+    '3405201/63e0e67a1cc4112aceb321a3a595baba.mp4',
+    '3405201/e66c88a9523cde8d43134fefe0473ae7.mp4',
+    '3405201/a7a962e9966fd017a107cc34dd203720.mp4',
+    '3405201/3e05223d67709e90e32e88b8462b2b0c.mp4',
+  ],
+  '3505202': [
+    '3505202/15b4145b99e62330ea5b2eb06f857318.mp4',
+    '3505202/ed20f5c7afd0800202cd3cb19b00e78e.mp4',
+    '3505202/298715dbb5b5d2aafd2ac1b00d18cb08.mp4',
+    '3505202/a21cc6583792c5129ed32cb161b94e70.mp4',
+    '3505202/298715dbb5b5d2aafd2ac1b00d18cb08.mp4',
+    '3505202/95d98c1b06cfbad2625ff13f21ff6352.mp4',
+    '3505202/afa29e16060d106a1159659b38953a05.mp4',
+    '3505202/50dd75ac64394125cc622f570d77af7e.mp4',
+    '3505202/e9e94d32014a9ea6de5265e9d74fa544.mp4',
+    '3505202/44289cf10d91d37216ef15b9f6710d45.mp4',
+    '3505202/045e75895f609cfbe8d5d81cb548d604.mp4',
+    '3505202/0c15251f39e1d63f6c245204bf0a603b.mp4',
+    '3505202/c0207d39fa62cb7e13dd744fcf391126.mp4',
+    '3505202/8281b6cc3c80c449ada3a068bbeb0af9.mp4',
+  ],
   '3409001': [
     '3409001/6b171e64dbce3a8ea3d5616601e58792.mp4',
     '3409001/af6b78f548d07c8b66609dbcc6770e45.mp4',
@@ -117,7 +181,7 @@ var Player = {
     }
   }
 }
-Player.setVoiceGroups(['9900014']);
+Player.setVoiceGroups(['9900014', '3000201', '3100202']);
 
 document.getElementById('volume').addEventListener('change', function(e) {
   Player.changeVolume(e.target.value);
@@ -135,8 +199,21 @@ document.getElementById('stop').addEventListener('click', function() {
 document.addEventListener('click', function(e) {
   if (e.target.name !== 'group') return;
   var checkboxes = document.getElementsByName('group');
-  var groups = Array.prototype.slice.apply(checkboxes)
+  var groups = [].slice.apply(checkboxes)
     .filter(function(x) {return x.checked})
     .map(function(x) {return x.value});
   Player.setVoiceGroups(groups);
+  // チェックしたのを保存
+  localStorage.urusaiGroups = JSON.stringify(groups);
 }, false);
+
+// チェックしたのを復帰
+if (localStorage.urusaiGroups) {
+  var groups = JSON.parse(localStorage.urusaiGroups);
+  Player.setVoiceGroups(groups);
+  var checkboxes = document.getElementsByName('group');
+  [].slice.apply(checkboxes)
+    .forEach(function(x) {
+      x.checked = groups.some(function(g){return x.value == g});
+    });
+}
