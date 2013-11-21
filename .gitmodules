@@ -1,0 +1,3 @@
+[submodule "clicker"]
+	path = clicker
+	url = git://github.com/furugomu/aikoclicker.git
