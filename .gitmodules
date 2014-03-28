@@ -1,3 +1,6 @@
 [submodule "clicker"]
 	path = clicker
 	url = git://github.com/furugomu/aikoclicker.git
+[submodule "sakuratataki"]
+	path = sakuratataki
+	url = git://github.com/furugomu/sakuratataki.git
